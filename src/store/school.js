@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from "../store"
 import { SCHOOL_BOOK_BASE_GAIN, SCHOOL_EXAM_DUST_MIN, SCHOOL_EXAM_PASS_PRICE } from "../js/constants";
 
 
@@ -57,9 +58,9 @@ export default {
                 dispatch('currency/spend', {feature: 'gem', name: 'sapphire', amount: SCHOOL_EXAM_PASS_PRICE}, {root: true});
             }
         },
-        convertPass({ getters, rootGetters, dispatch, rootState }) {
+        convertPass({ getters, rootGetters, dispatch }) {
             if (rootGetters['currency/value']('school_examPass') >= 1) {
-                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: Math.min(SCHOOL_EXAM_DUST_MIN, rootState.stat.school_highestGrade.total) * getters.dustMult}, {root: true});
+                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: Math.min(SCHOOL_EXAM_DUST_MIN, store.stat.school_highestGrade.total) * getters.dustMult}, {root: true});
                 dispatch('currency/spend', {feature: 'school', name: 'examPass', amount: 1}, {root: true});
             }
         }
