@@ -1,5 +1,5 @@
 import Vue from "vue";
-import store from "./store";
+import store from "../../store";
 import { SCHOOL_BOOK_BASE_GAIN, SCHOOL_EXAM_DUST_MIN, SCHOOL_EXAM_PASS_PRICE } from "../js/constants";
 
 
