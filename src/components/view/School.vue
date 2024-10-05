@@ -196,7 +196,28 @@ export default {
 
       // Immediately end exam if you get a perfect score
       if (this.mode === 'exam' && value >= this.currentSubject.scoreGoal) {
-        this.$store.dispatch('school/finishSchool', {mode: 'exam', score: Math.min(value, this.currentSubject.scoreGoal), subject: this.playing});
+        const dustGain = this.$store.getters['school/'](1, this.currentSubject.currentGrade);
+        this.$store.dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: dustGain});
+        this.$store.dispatch('note/find', 'school_1');
+
+        const gradePlus = this.currentSubject.currentGrade >= this.currentSubject.grade;
+        if (gradePlus) {
+          const newGrade = this.currentSubject.grade + 1;
+          this.$store.commit('stat/increaseTo', {feature: 'school', name: 'highestGrade', value: newGrade});
+          this.$store.commit('school/updateKey', {name: this.playing, key: 'grade', value: newGrade});
+          this.$store.commit('school/updateKey', {name: this.playing, key: 'currentGrade', value: newGrade});
+          this.$store.commit('school/updateKey', {name: this.playing, key: 'progress', value: 0});
+        }
+
+        this.$store.commit('system/addNotification', {color: 'success', timeout: 5000, message: {
+          type: 'school',
+          isExam: true,
+          score: value,
+          perfectScore: true,
+          gradePlus,
+          dust: dustGain
+        }});
+
         this.leaveSchool();
       }
     },
