@@ -215,7 +215,7 @@ export default {
 
       // Immediately end exam if you get a perfect score
       if (this.mode === 'exam' && value >= this.currentSubject.scoreGoal) {
-        const dustGain = this.$store.getters['school/examReward'](1, this.currentSubject.currentGrade);
+        const dustGain = this.$store.getters['school/'](1, this.currentSubject.currentGrade);
         this.$store.dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: dustGain});
         this.$store.dispatch('note/find', 'school_1');
 

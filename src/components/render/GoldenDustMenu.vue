@@ -37,6 +37,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+// import store from "../../store";
 import mining from '../../js/modules/mining';
 import village from '../../js/modules/village';
 import horde from '../../js/modules/horde';
@@ -72,7 +73,7 @@ export default {
       return this.$store.state.system.screen === 'school';
     },
     goldenDustMin() {
-      return Math.round(SCHOOL_EXAM_DUST_MIN * this.$store.getters['school/dustMult']);
+      return Math.round(this.$store.state.stat.school_highestGrade.total * this.$store.getters['school/dustMult']);
     },
     canConvertPass() {
       return this.$store.getters['currency/value']('school_examPass') >= 1 && this.$store.state.currency.school_goldenDust.value < this.$store.state.currency.school_goldenDust.cap;
