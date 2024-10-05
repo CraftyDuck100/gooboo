@@ -110,7 +110,7 @@ export default {
         },
         convertPass({ getters, rootGetters, dispatch }) {
             if (rootGetters['currency/value']('school_examPass') >= 1) {
-                let dustBase = 600 + 600 * 0.5 * ((achievement.achievement.highestGrade - 1) * 0.35 + 1);
+                let dustBase = 600 + 600 * 0.5 * ((achievement.achievement.highestGrade.value() - 1) * 0.35 + 1);
                 if (dustBase > 1000) {
                     dustBase = Math.pow((dustBase - 900) / 100, 0.8) * 100 + 900;
                 }

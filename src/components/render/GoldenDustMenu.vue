@@ -94,7 +94,14 @@ export default {
       return this.$store.state.system.screen === 'school';
     },
     goldenDustMin() {
-      return Math.round(this.$store.state.stat.school_highestGrade.total * this.$store.getters['school/dustMult']);
+      let dustBase = 600 + 600 * 0.5 * ((this.$store.state.stat.school_highestGrade.total - 1) * 0.35 + 1);
+      if (dustBase > 1000) {
+          dustBase = Math.pow((dustBase - 900) / 100, 0.8) * 100 + 900;
+      }
+      if (dustBase > 2000) {
+          dustBase = Math.pow((dustBase - 1900) / 100, 0.2) * 100 + 1900;
+      }
+      return Math.round( dustBase * this.$store.getters['school/dustMult']);
     },
     canConvertPass() {
       return this.$store.getters['currency/value']('school_examPass') >= 1;
