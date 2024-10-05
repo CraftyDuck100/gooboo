@@ -110,7 +110,14 @@ export default {
         },
         convertPass({ getters, rootGetters, dispatch }) {
             if (rootGetters['currency/value']('school_examPass') >= 1) {
-                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: examReward(1, achievement.achievement.highestGrade) * getters.dustMult}, {root: true});
+                let dustBase = 600 + 600 * 0.5 * ((achievement.achievement.highestGrade - 1) * 0.35 + 1);
+                if (dustBase > 1000) {
+                    dustBase = Math.pow((dustBase - 900) / 100, 0.8) * 100 + 900;
+                }
+                if (dustBase > 2000) {
+                    dustBase = Math.pow((dustBase - 1900) / 100, 0.2) * 100 + 1900;
+                }
+                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: Math.round(dustBase * getters.dustMult)}, {root: true});
                 dispatch('currency/spend', {feature: 'school', name: 'examPass', amount: 1}, {root: true});
             }
         },
