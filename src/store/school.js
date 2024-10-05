@@ -109,7 +109,7 @@ export default {
         },
         convertPass({ getters, rootGetters, dispatch, state }) {
             if (rootGetters['currency/value']('school_examPass') >= 1) {
-                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: Math.min(SCHOOL_EXAM_DUST_MIN, state.stat.school_highestGrade.total) * getters.dustMult}, {root: true});
+                dispatch('currency/gain', {feature: 'school', name: 'goldenDust', amount: Math.min(SCHOOL_EXAM_DUST_MIN, rootState.stat.school_highestGrade.total) * getters.dustMult}, {root: true});
                 dispatch('currency/spend', {feature: 'school', name: 'examPass', amount: 1}, {root: true});
             }
         },
