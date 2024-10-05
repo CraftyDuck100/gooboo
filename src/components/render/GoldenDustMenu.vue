@@ -45,7 +45,7 @@ import farm from '../../js/modules/farm';
 import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
-import { SCHOOL_EXAM_DUST_MIN } from '../../js/constants';
+// import { SCHOOL_EXAM_DUST_MIN } from '../../js/constants';
 
 export default {
   components: { Currency, PriceTag },
