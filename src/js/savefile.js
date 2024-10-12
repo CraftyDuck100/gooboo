@@ -160,7 +160,7 @@ function decodeFile(file, showErrors = true) {
         return null;
     }
 
-    return file;
+    return JSON.stringify(file);
 }
 
 function loadFile(file) {
