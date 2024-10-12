@@ -560,5 +560,5 @@ function getSavefile() {
 
     save.checksum = simpleHash(JSON.stringify(save));
 
-    return encodeFile(save);
+    return save;
 }
