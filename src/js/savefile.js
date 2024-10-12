@@ -160,7 +160,7 @@ function decodeFile(file, showErrors = true) {
         return null;
     }
 
-    return JSON.stringify(file);
+    return file;
 }
 
 function loadFile(file) {
@@ -575,5 +575,5 @@ function getSavefile() {
 
     save.checksum = simpleHash(JSON.stringify(save));
 
-    return save;
+    return JSON.stringify(save);
 }
