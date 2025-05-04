@@ -60,10 +60,10 @@ import mining from '../../js/modules/mining';
 import village from '../../js/modules/village';
 import horde from '../../js/modules/horde';
 import farm from '../../js/modules/farm';
+import gem from '../../js/modules/gem';
 import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
-  import gem from "./modules/gem";
 // import { SCHOOL_EXAM_DUST_MIN } from '../../js/constants';
 
 export default {
