@@ -111,8 +111,8 @@ export default {
     performTimeSkip() {
       if (this.canAfford) {
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
-        module.tick(Math.round(Math.min(this.minutes, 99999) * 60 / module.tickspeed));
-        this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: this.dustCost});
+        module.tick(Math.round(this.minutes * 60 / module.tickspeed));
+        // this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: this.dustCost});
       }
     },
     convertPass() {
