@@ -116,8 +116,7 @@ export default {
         const timestamp = Math.floor(Date.now() / 1000);
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
-        const diff = Math.floor((getDay(new Date(timestamp * 1000)) + this.minutes * 60 / gem.tickspeed) * store.state.system.timeMult / module.tickspeed) - Math.floor(getDay(new Date((Math.floor(Date.now() / 1000) + this.minutes * 60 / module.tickspeed) * 1000)));
-        gem.tick(diff, getDay(new Date(timestamp * 1000)), getDay(new Date((Math.floor(Date.now() / 1000) + this.minutes * 60 / module.tickspeed) * 1000)));
+        gem.tick(diff, Math.floor(Date.now() / 1000), Math.floor(Date.now() / 1000));
         this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: 0});
       }
     },
