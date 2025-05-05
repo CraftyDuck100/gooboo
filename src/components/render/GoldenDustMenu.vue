@@ -65,6 +65,7 @@ import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
 import store from "../../store";
+import { getDay } from "../../js/utils/date";
 // import { SCHOOL_EXAM_DUST_MIN } from '../../js/constants';
 
 export default {
@@ -112,6 +113,7 @@ export default {
   methods: {
     performTimeSkip() {
       if (this.canAfford) {
+        const timestamp = Math.floor(Date.now() / 1000);
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
         const diff = Math.floor((getDay(new Date(timestamp * 1000)) + this.minutes * 60 / gem.tickspeed) * store.state.system.timeMult / module.tickspeed) - Math.floor(getDay(new Date(timestamp * 1000)) * store.state.system.timeMult / module.tickspeed);
