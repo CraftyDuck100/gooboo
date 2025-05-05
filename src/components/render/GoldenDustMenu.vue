@@ -116,7 +116,7 @@ export default {
         const timestamp = Math.floor(Date.now() / 1000);
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
-        gem.tick(diff, Math.floor(Date.now() / 1000), Math.floor(Date.now() / 1000));
+        gem.tick(Math.round(this.minutes * 60 / module.tickspeed), Math.floor(Date.now() / 1000), Math.floor(Date.now() / 1000));
         this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: 0});
       }
     },
