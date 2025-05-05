@@ -61,6 +61,7 @@ import village from '../../js/modules/village';
 import horde from '../../js/modules/horde';
 import farm from '../../js/modules/farm';
 import gem from '../../js/modules/gem';
+import cryo from '../../js/modules/cryolab';
 import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
@@ -115,6 +116,7 @@ export default {
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
         gem.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
+        cryo.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
         this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: 0});
       }
     },
