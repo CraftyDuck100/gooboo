@@ -64,8 +64,6 @@ import gem from '../../js/modules/gem';
 import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
-import store from "../../store";
-import { getDay } from "../../js/utils/date";
 // import { SCHOOL_EXAM_DUST_MIN } from '../../js/constants';
 
 export default {
@@ -116,7 +114,7 @@ export default {
         const timestamp = Math.floor(Date.now() / 1000);
         const module = {mining, village, horde, farm, gallery}[this.$store.state.system.screen];
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
-        gem.tick(Math.round(this.minutes * 60 / module.tickspeed), Math.floor(Date.now() / 1000), Math.floor(Date.now() / 1000));
+        gem.tick(Math.round(this.minutes * 60 / module.tickspeed), timestamp, timestamp);
         this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: 0});
       }
     },
