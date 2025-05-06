@@ -27,6 +27,8 @@ import { simpleHash } from "./utils/random";
 import v1_5_0 from "./modules/migration/v1_5_0";
 import v1_5_1 from "./modules/migration/v1_5_1";
 import v1_5_3 from "./modules/migration/v1_5_3";
+import v1_5_4 from "./modules/migration/v1_5_4";
+import v1_5_6 from "./modules/migration/v1_5_6";
 
 const migrations = {
     '1.1.0': v1_1_0,
@@ -39,6 +41,8 @@ const migrations = {
     '1.5.0': v1_5_0,
     '1.5.1': v1_5_1,
     '1.5.3': v1_5_3,
+    '1.5.4': v1_5_4,
+    '1.5.6': v1_5_6,
 };
 
 export { checkLocal, saveLocal, loadFile, exportFile, cleanStore, getSavefile, getSavefileName, encodeFile, decodeFile }
@@ -485,7 +489,7 @@ function getSavefile() {
         }
     }
     for (const [key, elem] of Object.entries(store.state.currency)) {
-        if (elem.value > 0) {
+        if (elem.value !== 0) {
             save.currency[key] = elem.value;
         }
     }

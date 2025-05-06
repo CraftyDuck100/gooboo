@@ -24,7 +24,16 @@ export default {
     name: 'village',
     tickspeed: 1,
     unlockNeeded: 'villageFeature',
-    tick(seconds, oldTime, newTime) {
+    forceTick(seconds, oldTime, newTime) {
+        // Get free boxes
+        if (store.state.unlock.villageSpecialIngredient.use) {
+            const dayDiff = Math.floor(newTime / (SECONDS_PER_DAY * 7)) - Math.floor(oldTime / (SECONDS_PER_DAY * 7));
+            if (dayDiff > 0) {
+                store.dispatch('consumable/gain', {name: 'village_ingredientBox', amount: dayDiff});
+            }
+        }
+    },
+    tick(seconds) {
         store.commit('stat/add', {feature: 'village', name: 'timeSpent', value: seconds});
         let diffs = {};
         store.getters['currency/list']('village', 'regular').filter(elem => !['village_coin', 'village_joy'].includes(elem)).forEach(currency => {
@@ -193,14 +202,6 @@ export default {
                 });
             }
         }
-
-        // Get free boxes
-        if (store.state.unlock.villageSpecialIngredient.see) {
-            const dayDiff = Math.floor(newTime / (SECONDS_PER_DAY * 7)) - Math.floor(oldTime / (SECONDS_PER_DAY * 7));
-            if (dayDiff > 0) {
-                store.dispatch('consumable/gain', {name: 'village_ingredientBox', amount: dayDiff});
-            }
-        }
     },
     unlock: [
         'villageFeature',
@@ -228,10 +229,7 @@ export default {
         bestPrestige0: {showInStatistics: true},
         bestPrestige1: {showInStatistics: true},
         prestigeCount: {showInStatistics: true},
-        totalOffering: {showInStatistics: true},
         minHappiness: {},
-        bestOffering: {showInStatistics: true},
-        offeringAmount: {},
         highestPower: {showInStatistics: true},
     },
     mult: {
@@ -345,7 +343,7 @@ export default {
         shares: {type: 'prestige', alwaysVisible: true, color: 'beige', icon: 'mdi-certificate', gainMult: {}},
         offering: {type: 'prestige', color: 'orange-red', icon: 'mdi-candle', gainMult: {display: 'perHour'}, showGainMult: true, gainTimerFunction() {
             return store.getters['village/offeringPerSecond'] * SECONDS_PER_HOUR;
-        }, timerIsEstimate: true}
+        }}
     },
     upgrade: {
         ...upgradeBuilding,

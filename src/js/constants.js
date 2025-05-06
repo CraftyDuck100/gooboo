@@ -44,6 +44,7 @@ export const VILLAGE_JOY_MIN_HAPPINESS = 1.25;
 export const VILLAGE_JOY_PER_HAPPINESS = 0.2;
 export const VILLAGE_JOY_HAPPINESS_REDUCTION = 1.2;
 export const VILLAGE_MIN_HAPPINESS = 0.01;
+export const VILLAGE_OFFERING_PASSIVE_GAIN = 0.02;
 
 export const HORDE_COMBO_ATTACK = 1.025;
 export const HORDE_COMBO_HEALTH = 1.01;
@@ -108,8 +109,8 @@ export const WEATHER_CHAOS_BAIT_COST = 90;
 
 export const NIGHT_HUNT_HINT_PENALTY = 0.1;
 
-export const SNOWDOWN_FIGHT_COST = 5;
-export const SNOWDOWN_REROLL_COST = 50;
-export const SNOWDOWN_BOOST_COST = 140;
+export const SNOWDOWN_FIGHT_COST = 8;
+export const SNOWDOWN_REROLL_COST = 30;
+export const SNOWDOWN_BOOST_COST = 55;
 
 export const NIGHT_HUNT_GL_BOOST = 1.01;
