@@ -62,6 +62,8 @@ import horde from '../../js/modules/horde';
 import farm from '../../js/modules/farm';
 import gem from '../../js/modules/gem';
 import cryo from '../../js/modules/cryolab';
+import event from '../../js/modules/event';
+import school from '../../js/modules/school';
 import gallery from '../../js/modules/gallery';
 import Currency from './Currency.vue';
 import PriceTag from './PriceTag.vue';
@@ -117,6 +119,8 @@ export default {
         module.tick(Math.round(this.minutes * 60 / module.tickspeed));
         gem.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
         cryo.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
+        school.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
+        event.tick(Math.round(this.minutes * 60) * 10, timestamp, timestamp + Math.round(this.minutes * 60) * 10);
         this.$store.dispatch('currency/spend', {feature: 'school', name: 'goldenDust', amount: 0});
       }
     },
