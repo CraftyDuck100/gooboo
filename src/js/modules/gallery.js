@@ -10,7 +10,7 @@ import upgrade from "./gallery/upgrade";
 import upgradeShape from "./gallery/upgradeShape";
 import upgradePremium from "./gallery/upgradePremium";
 import upgradePrestige from "./gallery/upgradePrestige";
-import bookGallery from "./school/bookGallery";
+// import bookGallery from "./school/bookGallery";
 export default {
     name: 'gallery',
     tickspeed: 1,
